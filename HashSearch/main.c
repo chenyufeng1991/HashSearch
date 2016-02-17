@@ -29,7 +29,7 @@ void Display(HashTable *hashTable);
 
 int main(int argc, const char * argv[]) {
 
-    int i,j,result;
+    int i,result;
     HashTable hashTable;
     int arr[HASHSIZE] = {13,29,27,28,26,30,38};
 
@@ -43,7 +43,7 @@ int main(int argc, const char * argv[]) {
     Display(&hashTable);
 
     //查找数据
-    result= Search(&hashTable,30);
+    result = Search(&hashTable,30);
     if (result == -1){
         printf("没有找到！");
     }else{
