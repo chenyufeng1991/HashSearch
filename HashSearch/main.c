@@ -15,11 +15,12 @@
 
 typedef int Status;
 typedef struct{
-    int *elem; /* 数据元素存储地址，动态分配数组 */
-    int count; /*  当前数据元素个数 */
+    int *elem; // 数据元素存储地址，动态分配数组
+    int count; //  当前数据元素个数
 }HashTable;
 
-int m = 0; /* 散列表表长，全局变量 */
+// 散列表表长，全局变量
+int m = 0;
 
 Status Init(HashTable *hashTable);
 int Hash(int data);
@@ -53,7 +54,7 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 
-/*初始化*/
+//初始化
 Status Init(HashTable *hashTable){
 
     int i;
@@ -71,7 +72,7 @@ int Hash(int data){
     return data % m;
 }
 
-/*插入*/
+//插入
 void Insert(HashTable *hashTable,int data){
 
     int hashAddress = Hash(data); //求哈希地址
@@ -85,7 +86,7 @@ void Insert(HashTable *hashTable,int data){
     hashTable->elem[hashAddress] = data;
 }
 
-/*查找*/
+//查找
 int Search(HashTable *hashTable,int data){
 
     //求哈希地址
