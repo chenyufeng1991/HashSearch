@@ -30,13 +30,13 @@ int m=0; /* 散列表表长，全局变量 */
 
 /*初始化*/
 Status Init(HashTable *hashTable){
+    
     int i;
 
     m=HASHSIZE;
     hashTable->elem= (int *)malloc(m*sizeof(int)); //申请内存
     hashTable->count=m;
-    for (i=0;i<m;i++)
-    {
+    for (i=0;i<m;i++){
         hashTable->elem[i]=NULLKEY;
     }
     return OK;
@@ -53,8 +53,7 @@ void Insert(HashTable *hashTable,int data){
     int hashAddress=Hash(data); //求哈希地址
 
     //发生冲突
-    while(hashTable->elem[hashAddress]!=NULLKEY)
-    {
+    while(hashTable->elem[hashAddress]!=NULLKEY){
         //利用开放定址的线性探测法解决冲突
         hashAddress=(++hashAddress)%m;
     }
@@ -69,8 +68,7 @@ int Search(HashTable *hashTable,int data){
     int hashAddress=Hash(data); //求哈希地址
 
     //发生冲突
-    while(hashTable->elem[hashAddress]!=data)
-    {
+    while(hashTable->elem[hashAddress]!=data){
         //利用开放定址的线性探测法解决冲突
         hashAddress=(++hashAddress)%m;
 
@@ -83,11 +81,10 @@ int Search(HashTable *hashTable,int data){
 
 /*打印结果*/
 void Display(HashTable *hashTable){
-    
+
     int i;
 
-    for (i=0;i<hashTable->count;i++)
-    {
+    for (i=0;i<hashTable->count;i++){
         printf("%d ",hashTable->elem[i]);
     }
     printf("\n");
@@ -103,8 +100,7 @@ int main(int argc, const char * argv[]) {
     Init(&hashTable);
 
     //插入数据
-    for (i=0;i<HASHSIZE;i++)
-    {
+    for (i=0;i<HASHSIZE;i++){
         Insert(&hashTable,arr[i]);
     }
     Display(&hashTable);
@@ -115,7 +111,6 @@ int main(int argc, const char * argv[]) {
     else printf("在哈希表中的位置是:%d",result);
     
     getchar();
-
 
     return 0;
 }
