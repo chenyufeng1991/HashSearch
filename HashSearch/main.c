@@ -47,10 +47,8 @@ int main(int argc, const char * argv[]) {
     if (result == -1){
         printf("没有找到！");
     }else{
-        printf("在哈希表中的位置是:%d",result);
+        printf("在哈希表中的位置是:%d\n",result);
     }
-
-    getchar();
 
     return 0;
 }
