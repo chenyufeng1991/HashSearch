@@ -22,11 +22,11 @@ typedef struct{
 // 散列表表长，全局变量
 int m = 0;
 
-Status Init(HashTable *hashTable);
+Status InitHashTable(HashTable *hashTable);
 Status Hash(int key);
 void Insert(HashTable *hashTable,int key);
 Status Search(HashTable *hashTable,int key);
-void Display(HashTable *hashTable);
+void DisplayHashTable(HashTable *hashTable);
 
 int main(int argc, const char * argv[]) {
 
@@ -35,13 +35,14 @@ int main(int argc, const char * argv[]) {
     int arr[HASHSIZE] = {13,29,27,28,26,30,38};
 
     //初始化哈希表
-    Init(&hashTable);
+    InitHashTable(&hashTable);
 
-    //插入数据
+    //向哈希表中插入数据
     for (i = 0;i < HASHSIZE;i++){
         Insert(&hashTable,arr[i]);
     }
-    Display(&hashTable);
+    //数据已存到哈希表中，打印观察哈希表，元素的位置和原数组是完全不一样的
+    DisplayHashTable(&hashTable);
 
     //查找数据
     result = Search(&hashTable,13);
@@ -55,13 +56,13 @@ int main(int argc, const char * argv[]) {
 }
 
 //初始化一个空的哈希表
-Status Init(HashTable *hashTable){
+Status InitHashTable(HashTable *hashTable){
 
     int i;
     m = HASHSIZE;
     hashTable->elem = (int *)malloc(m * sizeof(int)); //申请内存
     hashTable->count = m;
-    for (i = 0;i < m;i++){
+    for(i = 0;i < m;i++){
         hashTable->elem[i] = NULLKEY;
     }
     return OK;
@@ -77,15 +78,15 @@ void Insert(HashTable *hashTable,int key){
 
     /**
      *  根据每一个关键字，计算哈希地址hashAddress；
-     *
      */
     int hashAddress = Hash(key); //求哈希地址
-    //发生冲突
+    /**
+     *  发生冲突，表示该位置已经存有数据
+     */
     while(hashTable->elem[hashAddress] != NULLKEY){
         //利用开放定址的线性探测法解决冲突
         hashAddress = (hashAddress + 1) % m;
     }
-
     //插入值
     hashTable->elem[hashAddress] = key;
 }
@@ -108,7 +109,7 @@ Status Search(HashTable *hashTable,int key){
 }
 
 //打印结果
-void Display(HashTable *hashTable){
+void DisplayHashTable(HashTable *hashTable){
 
     int i;
     for (i = 0;i < hashTable->count;i++){
