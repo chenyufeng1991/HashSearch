@@ -109,9 +109,7 @@ Status Search(HashTable *hashTable,int key){
 
 //打印结果
 void DisplayHashTable(HashTable *hashTable){
-
-    int i;
-    for (i = 0;i < hashTable->count;i++){
+    for (int i = 0;i < hashTable->count;i++){
         printf("%d ",hashTable->elem[i]);
     }
     printf("\n");
