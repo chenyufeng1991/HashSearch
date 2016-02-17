@@ -60,11 +60,10 @@ int main(int argc, const char * argv[]) {
 //初始化一个空的哈希表
 void InitHashTable(HashTable *hashTable){
 
-    int i;
     m = HASHSIZE;
     hashTable->elem = (int *)malloc(m * sizeof(int)); //申请内存
     hashTable->count = m;
-    for(i = 0;i < m;i++){
+    for(int i = 0;i < m;i++){
         hashTable->elem[i] = NULLKEY;
     }
 }
