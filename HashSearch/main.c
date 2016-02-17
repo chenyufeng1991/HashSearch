@@ -23,9 +23,9 @@ typedef struct{
 int m = 0;
 
 Status Init(HashTable *hashTable);
-Status Hash(int data);
-void Insert(HashTable *hashTable,int data);
-Status Search(HashTable *hashTable,int data);
+Status Hash(int key);
+void Insert(HashTable *hashTable,int key);
+Status Search(HashTable *hashTable,int key);
 void Display(HashTable *hashTable);
 
 int main(int argc, const char * argv[]) {
@@ -68,18 +68,18 @@ Status Init(HashTable *hashTable){
 }
 
 //哈希函数(除留余数法)
-Status Hash(int data){
-    return data % m;
+Status Hash(int key){
+    return key % m;
 }
 
 //插入
-void Insert(HashTable *hashTable,int data){
+void Insert(HashTable *hashTable,int key){
 
     /**
      *  根据每一个关键字，计算哈希地址hashAddress；
      *
      */
-    int hashAddress = Hash(data); //求哈希地址
+    int hashAddress = Hash(key); //求哈希地址
     //发生冲突
     while(hashTable->elem[hashAddress] != NULLKEY){
         //利用开放定址的线性探测法解决冲突
@@ -87,19 +87,19 @@ void Insert(HashTable *hashTable,int data){
     }
 
     //插入值
-    hashTable->elem[hashAddress] = data;
+    hashTable->elem[hashAddress] = key;
 }
 
 //查找
-Status Search(HashTable *hashTable,int data){
+Status Search(HashTable *hashTable,int key){
 
     //求哈希地址
-    int hashAddress = Hash(data);
+    int hashAddress = Hash(key);
     //发生冲突
-    while(hashTable->elem[hashAddress] != data){
+    while(hashTable->elem[hashAddress] != key){
         //利用开放定址的线性探测法解决冲突
         hashAddress = (hashAddress + 1) % m;
-        if (hashTable->elem[hashAddress] == NULLKEY || hashAddress == Hash(data)){
+        if (hashTable->elem[hashAddress] == NULLKEY || hashAddress == Hash(key)){
             return -1;
         }
     }
