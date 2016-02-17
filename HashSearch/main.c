@@ -11,12 +11,6 @@
 #include "math.h"
 
 #define OK 1
-#define ERROR 0
-#define TRUE 1
-#define FALSE 0
-#define SUCCESS 1
-#define UNSUCCESS 0
-
 #define HASHSIZE 7 /* 定义散列表长为数组的长度 */
 #define NULLKEY -32768
 
