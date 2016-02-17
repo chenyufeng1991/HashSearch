@@ -66,7 +66,7 @@ Status Init(HashTable *hashTable){
     return OK;
 }
 
-/*哈希函数(除留余数法)*/
+//哈希函数(除留余数法)
 int Hash(int data){
     return data % m;
 }
@@ -93,8 +93,9 @@ int Search(HashTable *hashTable,int data){
     while(hashTable->elem[hashAddress] != data){
         //利用开放定址的线性探测法解决冲突
         hashAddress = (++hashAddress) % m;
-
-        if (hashTable->elem[hashAddress] == NULLKEY || hashAddress == Hash(data)) return -1;
+        if (hashTable->elem[hashAddress] == NULLKEY || hashAddress == Hash(data)){
+            return -1;
+        }
     }
     //查找成功
     return hashAddress;
