@@ -8,7 +8,6 @@
 
 #include "stdio.h"
 #include "stdlib.h"
-#include "math.h"
 
 #define OK 1
 #define HASHSIZE 7 /* 定义散列表长为数组的长度 */
@@ -95,7 +94,7 @@ int main(int argc, const char * argv[]) {
     Display(&hashTable);
 
     //查找数据
-    result= Search(&hashTable,28);
+    result= Search(&hashTable,30);
     if (result == -1){
         printf("没有找到！");
     }else{
