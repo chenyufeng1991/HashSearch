@@ -9,7 +9,6 @@
 #include "stdio.h"
 #include "stdlib.h"
 
-#define OK 1
 #define HASHSIZE 7 // 定义散列表长为数组的长度
 #define NULLKEY -32768
 
@@ -30,7 +29,7 @@ void DisplayHashTable(HashTable *hashTable);
 
 int main(int argc, const char * argv[]) {
 
-    int i,result;
+    int result;
     HashTable hashTable;
     int arr[HASHSIZE] = {13,29,27,28,26,30,38};
 
@@ -41,14 +40,14 @@ int main(int argc, const char * argv[]) {
      *  向哈希表中插入数据;
      也就是把元素使用哈希函数映射到哈希表中；
      */
-    for (i = 0;i < HASHSIZE;i++){
+    for (int i = 0;i < HASHSIZE;i++){
         Insert(&hashTable,arr[i]);
     }
     //数据已存到哈希表中，打印观察哈希表，元素的位置和原数组是完全不一样的
     DisplayHashTable(&hashTable);
 
     //查找数据
-    result = Search(&hashTable,13);
+    result = Search(&hashTable,30);
     if (result == -1){
         printf("没有找到！");
     }else{
