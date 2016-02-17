@@ -54,7 +54,7 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 
-//初始化
+//初始化一个空的哈希表
 Status Init(HashTable *hashTable){
 
     int i;
@@ -75,6 +75,10 @@ Status Hash(int data){
 //插入
 void Insert(HashTable *hashTable,int data){
 
+    /**
+     *  根据每一个关键字，计算哈希地址hashAddress；
+     *
+     */
     int hashAddress = Hash(data); //求哈希地址
     //发生冲突
     while(hashTable->elem[hashAddress] != NULLKEY){
