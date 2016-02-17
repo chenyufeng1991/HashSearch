@@ -21,6 +21,40 @@ typedef struct{
 
 int m = 0; /* 散列表表长，全局变量 */
 
+Status Init(HashTable *hashTable);
+int Hash(int data);
+void Insert(HashTable *hashTable,int data);
+int Search(HashTable *hashTable,int data);
+void Display(HashTable *hashTable);
+
+int main(int argc, const char * argv[]) {
+
+    int i,j,result;
+    HashTable hashTable;
+    int arr[HASHSIZE] = {13,29,27,28,26,30,38};
+
+    //初始化哈希表
+    Init(&hashTable);
+
+    //插入数据
+    for (i = 0;i < HASHSIZE;i++){
+        Insert(&hashTable,arr[i]);
+    }
+    Display(&hashTable);
+
+    //查找数据
+    result= Search(&hashTable,30);
+    if (result == -1){
+        printf("没有找到！");
+    }else{
+        printf("在哈希表中的位置是:%d",result);
+    }
+
+    getchar();
+
+    return 0;
+}
+
 /*初始化*/
 Status Init(HashTable *hashTable){
 
@@ -78,30 +112,4 @@ void Display(HashTable *hashTable){
     printf("\n");
 }
 
-int main(int argc, const char * argv[]) {
 
-    int i,j,result;
-    HashTable hashTable;
-    int arr[HASHSIZE] = {13,29,27,28,26,30,38};
-
-    //初始化哈希表
-    Init(&hashTable);
-
-    //插入数据
-    for (i = 0;i < HASHSIZE;i++){
-        Insert(&hashTable,arr[i]);
-    }
-    Display(&hashTable);
-
-    //查找数据
-    result= Search(&hashTable,30);
-    if (result == -1){
-        printf("没有找到！");
-    }else{
-        printf("在哈希表中的位置是:%d",result);
-    }
-    
-    getchar();
-    
-    return 0;
-}
