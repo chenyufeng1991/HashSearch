@@ -43,7 +43,7 @@ int main(int argc, const char * argv[]) {
     Display(&hashTable);
 
     //查找数据
-    result = Search(&hashTable,30);
+    result = Search(&hashTable,13);
     if (result == -1){
         printf("没有找到！");
     }else{
@@ -78,7 +78,7 @@ void Insert(HashTable *hashTable,int data){
     //发生冲突
     while(hashTable->elem[hashAddress] != NULLKEY){
         //利用开放定址的线性探测法解决冲突
-        hashAddress = (++hashAddress) % m;
+        hashAddress = (hashAddress + 1) % m;
     }
 
     //插入值
@@ -88,11 +88,12 @@ void Insert(HashTable *hashTable,int data){
 /*查找*/
 int Search(HashTable *hashTable,int data){
 
-    int hashAddress = Hash(data); //求哈希地址
+    //求哈希地址
+    int hashAddress = Hash(data);
     //发生冲突
     while(hashTable->elem[hashAddress] != data){
         //利用开放定址的线性探测法解决冲突
-        hashAddress = (++hashAddress) % m;
+        hashAddress = (hashAddress + 1) % m;
         if (hashTable->elem[hashAddress] == NULLKEY || hashAddress == Hash(data)){
             return -1;
         }
@@ -101,11 +102,11 @@ int Search(HashTable *hashTable,int data){
     return hashAddress;
 }
 
-/*打印结果*/
+//打印结果
 void Display(HashTable *hashTable){
 
     int i;
-    for (i = 0;i < hashTable -> count;i++){
+    for (i = 0;i < hashTable->count;i++){
         printf("%d ",hashTable->elem[i]);
     }
     printf("\n");
