@@ -10,7 +10,7 @@
 #include "stdlib.h"
 
 #define OK 1
-#define HASHSIZE 7 /* 定义散列表长为数组的长度 */
+#define HASHSIZE 7 // 定义散列表长为数组的长度
 #define NULLKEY -32768
 
 typedef int Status;
@@ -23,9 +23,9 @@ typedef struct{
 int m = 0;
 
 Status Init(HashTable *hashTable);
-int Hash(int data);
+Status Hash(int data);
 void Insert(HashTable *hashTable,int data);
-int Search(HashTable *hashTable,int data);
+Status Search(HashTable *hashTable,int data);
 void Display(HashTable *hashTable);
 
 int main(int argc, const char * argv[]) {
@@ -68,7 +68,7 @@ Status Init(HashTable *hashTable){
 }
 
 //哈希函数(除留余数法)
-int Hash(int data){
+Status Hash(int data){
     return data % m;
 }
 
@@ -87,7 +87,7 @@ void Insert(HashTable *hashTable,int data){
 }
 
 //查找
-int Search(HashTable *hashTable,int data){
+Status Search(HashTable *hashTable,int data){
 
     //求哈希地址
     int hashAddress = Hash(data);
