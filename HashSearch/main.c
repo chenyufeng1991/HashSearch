@@ -37,7 +37,10 @@ int main(int argc, const char * argv[]) {
     //初始化哈希表
     InitHashTable(&hashTable);
 
-    //向哈希表中插入数据
+    /**
+     *  向哈希表中插入数据;
+     也就是把元素使用哈希函数映射到哈希表中；
+     */
     for (i = 0;i < HASHSIZE;i++){
         Insert(&hashTable,arr[i]);
     }
@@ -93,7 +96,6 @@ void Insert(HashTable *hashTable,int key){
 
 //查找
 Status Search(HashTable *hashTable,int key){
-
     //求哈希地址
     int hashAddress = Hash(key);
     //发生冲突
