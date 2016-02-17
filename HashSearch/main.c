@@ -22,7 +22,7 @@ typedef struct{
 // 散列表表长，全局变量
 int m = 0;
 
-Status InitHashTable(HashTable *hashTable);
+void InitHashTable(HashTable *hashTable);
 Status Hash(int key);
 void Insert(HashTable *hashTable,int key);
 Status Search(HashTable *hashTable,int key);
@@ -59,7 +59,7 @@ int main(int argc, const char * argv[]) {
 }
 
 //初始化一个空的哈希表
-Status InitHashTable(HashTable *hashTable){
+void InitHashTable(HashTable *hashTable){
 
     int i;
     m = HASHSIZE;
@@ -68,7 +68,6 @@ Status InitHashTable(HashTable *hashTable){
     for(i = 0;i < m;i++){
         hashTable->elem[i] = NULLKEY;
     }
-    return OK;
 }
 
 //哈希函数(除留余数法)
